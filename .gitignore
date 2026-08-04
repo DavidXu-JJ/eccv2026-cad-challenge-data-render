@@ -1,0 +1,6 @@
+bin/
+output/
+*.user
+*.suo
+*.log
+.vs/

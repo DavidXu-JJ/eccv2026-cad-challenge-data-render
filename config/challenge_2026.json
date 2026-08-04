@@ -1,0 +1,61 @@
+{
+  "schema_version": 2,
+  "profile_name": "eccv_cad_workshop_challenge_2026",
+  "tested_environment": {
+    "operating_system": "Microsoft Windows 11",
+    "os_architecture": "64-bit",
+    "powershell_version": "5.1.22621.6133",
+    "powershell_edition": "Desktop",
+    "clr_version": "4.0.30319.42000",
+    "solidworks_api_revision": "33.1.1",
+    "solidworks_executable_version": "33.1.1.0001",
+    "solidworks_release": "SOLIDWORKS 2025",
+    "sldworks_interop_version": "33.1.1.1",
+    "swconst_interop_version": "33.1.1.1",
+    "csc_version": "4.8.9232.0",
+    "pdftocairo_version": "25.02.0"
+  },
+  "normalization": {
+    "preserve_axes": true,
+    "center_bounding_box_at_origin": true,
+    "uniform_scale": true,
+    "drawing_model_target_max_dimension_m": 0.1,
+    "normalized_step_target_max_dimension_m": 0.0018
+  },
+  "drawing": {
+    "projection": "third_angle",
+    "sheet_size": "A4",
+    "sheet_orientation": "landscape",
+    "sheet_width_m": 0.297,
+    "sheet_height_m": 0.21,
+    "drawing_scale": 1.0,
+    "drawing_view_display_mode": "HLV_hidden_lines_visible",
+    "tangent_edges": "hidden",
+    "layer_name_policy": "preserve_0_then_numeric_by_layer_id",
+    "include_isometric": false,
+    "view_positions_m": {
+      "front": [0.083, 0.057],
+      "top": [0.083, 0.158],
+      "right": [0.223, 0.057]
+    }
+  },
+  "templates": {
+    "preferred_part": "gb_part.prtdot",
+    "preferred_assembly": "gb_assembly.asmdot",
+    "preferred_drawing_seed": "gb_a4.drwdot"
+  },
+  "import": {
+    "disable_3d_interconnect": true,
+    "disable_automatic_import_diagnostics": true,
+    "use_file_units": true,
+    "knit_option": "form_solids"
+  },
+  "exports": [
+    "normalized_step",
+    "solidworks_drawing",
+    "pdf",
+    "dxf",
+    "svg",
+    "projection_map"
+  ]
+}
