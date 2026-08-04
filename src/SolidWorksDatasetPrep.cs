@@ -92,9 +92,10 @@ internal static class SolidWorksDatasetPrep
 
         if (!options.NormalizeOnly)
         {
-            Directory.CreateDirectory(Path.Combine(root, "pdf"));
-            Directory.CreateDirectory(Path.Combine(root, "dxf"));
-            Directory.CreateDirectory(Path.Combine(root, "svg"));
+            var techDrawRoot = Path.Combine(root, "techdraw");
+            Directory.CreateDirectory(Path.Combine(techDrawRoot, "pdf"));
+            Directory.CreateDirectory(Path.Combine(techDrawRoot, "dxf"));
+            Directory.CreateDirectory(Path.Combine(techDrawRoot, "svg"));
             Directory.CreateDirectory(Path.Combine(root, "projection_maps"));
         }
     }
@@ -219,9 +220,10 @@ internal static class SolidWorksDatasetPrep
                         {
                             if (!options.NormalizeOnly)
                             {
-                                pdfPath = Path.Combine(options.OutputRoot, "pdf", stem + "__normalized.pdf");
-                                dxfPath = Path.Combine(options.OutputRoot, "dxf", stem + "__normalized.dxf");
-                                svgPath = Path.Combine(options.OutputRoot, "svg", stem + "__normalized.svg");
+                                var techDrawRoot = Path.Combine(options.OutputRoot, "techdraw");
+                                pdfPath = Path.Combine(techDrawRoot, "pdf", stem + "__normalized.pdf");
+                                dxfPath = Path.Combine(techDrawRoot, "dxf", stem + "__normalized.dxf");
+                                svgPath = Path.Combine(techDrawRoot, "svg", stem + "__normalized.svg");
                                 projectionMapPath = Path.Combine(options.OutputRoot, "projection_maps", stem + "__normalized_projection_map.json");
                             }
 

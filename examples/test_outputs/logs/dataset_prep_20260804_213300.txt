@@ -1,0 +1,54 @@
+21:33:04 SOLIDWORKS revision: 33.1.1
+21:33:04 DrawingModelTargetMaxDimension(m)=0.1
+21:33:04 NormalizedStepTargetMaxDimension(m)=0.0018 NormalizeOnly=False
+21:33:04 Projection=third_angle Sheet=A4_landscape DrawingScale=1
+21:33:04 DrawingViewDisplayMode=HLV_hidden_lines_visible TangentEdges=hidden
+21:33:04 PartTemplate=C:\ProgramData\SOLIDWORKS\SOLIDWORKS 2025\templates\gb_part.prtdot
+21:33:04 AssemblyTemplate=C:\ProgramData\SOLIDWORKS\SOLIDWORKS 2025\templates\gb_assembly.asmdot
+21:33:04 DrawingTemplate=C:\ProgramData\SOLIDWORKS\SOLIDWORKS 2025\templates\gb_a4.drwdot
+21:33:04 Processing D:\Solidworks_scripts_release\examples\test_inputs\000000.step
+21:33:05   OpenDoc7_part: errors=0 warnings=262144 opened=False
+21:33:10   OpenDoc7_assembly: errors=0 warnings=262144 opened=False
+21:33:10   OpenDoc6_part_silent: errors=2097152 warnings=0 opened=False
+21:33:12   LoadFile4_r: errors=0 opened=True
+21:33:16   OpenDoc7_part: errors=0 warnings=262144 opened=False
+21:33:17   OpenDoc7_assembly: errors=0 warnings=262144 opened=False
+21:33:17   OpenDoc6_part_silent: errors=2097152 warnings=0 opened=False
+21:33:17   LoadFile4_r: errors=0 opened=True
+21:33:18 Processing D:\Solidworks_scripts_release\examples\test_inputs\000001.step
+21:33:18   OpenDoc7_part: errors=0 warnings=262144 opened=False
+21:33:18   OpenDoc7_assembly: errors=0 warnings=262144 opened=False
+21:33:18   OpenDoc6_part_silent: errors=2097152 warnings=0 opened=False
+21:33:19   LoadFile4_r: errors=0 opened=True
+21:33:23   OpenDoc7_part: errors=0 warnings=262144 opened=False
+21:33:23   OpenDoc7_assembly: errors=0 warnings=262144 opened=False
+21:33:23   OpenDoc6_part_silent: errors=2097152 warnings=0 opened=False
+21:33:24   LoadFile4_r: errors=0 opened=True
+21:33:24 Processing D:\Solidworks_scripts_release\examples\test_inputs\000002.step
+21:33:24   OpenDoc7_part: errors=0 warnings=262144 opened=False
+21:33:24   OpenDoc7_assembly: errors=0 warnings=262144 opened=False
+21:33:24   OpenDoc6_part_silent: errors=2097152 warnings=0 opened=False
+21:33:25   LoadFile4_r: errors=0 opened=True
+21:33:30   OpenDoc7_part: errors=0 warnings=262144 opened=False
+21:33:30   OpenDoc7_assembly: errors=0 warnings=262144 opened=False
+21:33:30   OpenDoc6_part_silent: errors=2097152 warnings=0 opened=False
+21:33:31   LoadFile4_r: errors=0 opened=True
+21:33:32 Processing D:\Solidworks_scripts_release\examples\test_inputs\000003.step
+21:33:32   OpenDoc7_part: errors=0 warnings=262144 opened=False
+21:33:32   OpenDoc7_assembly: errors=0 warnings=262144 opened=False
+21:33:32   OpenDoc6_part_silent: errors=2097152 warnings=0 opened=False
+21:33:33   LoadFile4_r: errors=0 opened=True
+21:33:37   OpenDoc7_part: errors=0 warnings=262144 opened=False
+21:33:37   OpenDoc7_assembly: errors=0 warnings=262144 opened=False
+21:33:37   OpenDoc6_part_silent: errors=2097152 warnings=0 opened=False
+21:33:38   LoadFile4_r: errors=0 opened=True
+21:33:38 Processing D:\Solidworks_scripts_release\examples\test_inputs\000004.step
+21:33:39   OpenDoc7_part: errors=0 warnings=262144 opened=False
+21:33:39   OpenDoc7_assembly: errors=0 warnings=262144 opened=False
+21:33:39   OpenDoc6_part_silent: errors=2097152 warnings=0 opened=False
+21:33:40   LoadFile4_r: errors=0 opened=True
+21:33:44   OpenDoc7_part: errors=0 warnings=262144 opened=False
+21:33:44   OpenDoc7_assembly: errors=0 warnings=262144 opened=False
+21:33:44   OpenDoc6_part_silent: errors=2097152 warnings=0 opened=False
+21:33:45   LoadFile4_r: errors=0 opened=True
+21:33:45 Done. OK=5 SkippedExisting=0 SkippedMaxFailures=0 SkippedUnsupported=0 Failed=0 Processed=5 Results=D:\Solidworks_scripts_release\examples\test_outputs\manifests\dataset_prep_results_20260804_213345.csv

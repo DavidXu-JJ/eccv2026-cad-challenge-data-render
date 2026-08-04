@@ -14,19 +14,14 @@ param(
     [string]$TemplateDir = "",
     [string]$PartTemplate = "",
     [string]$AssemblyTemplate = "",
-    [string]$DrawingTemplate = "",
-    [string]$PdfToCairo = "",
-    [string]$Render3DToolExe = "",
+    [int]$Width = 0,
+    [int]$Height = 0,
     [int]$MaxProcessed = 2147483647,
-    [int]$Render3DWidth = 0,
-    [int]$Render3DHeight = 0,
     [switch]$Recursive,
     [switch]$Visible,
     [switch]$KeepSolidWorksOpen,
-    [switch]$Render3D,
-    [switch]$Skip3D,
-    [switch]$Keep3DBmp,
-    [switch]$SkipExisting3D,
+    [switch]$KeepBmp,
+    [switch]$SkipExisting,
     [switch]$DryRun
 )
 
@@ -49,7 +44,7 @@ if ([string]::IsNullOrWhiteSpace($ConfigPath)) {
     $ConfigPath = Join-Path $repoRoot "config\challenge_2026.json"
 }
 if ([string]::IsNullOrWhiteSpace($ToolExe)) {
-    $ToolExe = Join-Path $repoRoot "bin\SolidWorksDatasetPrep.exe"
+    $ToolExe = Join-Path $repoRoot "bin\SolidWorksTransparentPerspectiveRender.exe"
 }
 
 if (-not (Test-Path -LiteralPath $ConfigPath -PathType Leaf)) {
@@ -65,27 +60,25 @@ if (-not (Test-Path -LiteralPath $ToolExe -PathType Leaf)) {
         throw "Default executable is missing and the build script was not found: $buildScript"
     }
 
-    Write-Host "Default executable not found. Building it from the local SOLIDWORKS installation..."
+    Write-Host "Default 3D renderer executable not found. Building it from the local SOLIDWORKS installation..."
     & $buildScript
     if (-not (Test-Path -LiteralPath $ToolExe -PathType Leaf)) {
         throw "Build completed without creating the expected executable: $ToolExe"
     }
 }
 if ($PSCmdlet.ParameterSetName -eq "Single") {
-    if (-not (Test-Path -LiteralPath $InputFile -PathType Leaf)) { throw "Input STEP not found: $InputFile" }
+    if (-not (Test-Path -LiteralPath $InputFile -PathType Leaf)) { throw "Input model not found: $InputFile" }
 } else {
     if (-not (Test-Path -LiteralPath $InputDir -PathType Container)) { throw "Input directory not found: $InputDir" }
 }
 
 $config = Get-Content -LiteralPath $ConfigPath -Raw | ConvertFrom-Json
-$invariant = [System.Globalization.CultureInfo]::InvariantCulture
-if ($Render3DWidth -le 0) {
-    $Render3DWidth = if ($config.render_3d -and $config.render_3d.width_px) { [int]$config.render_3d.width_px } else { 1400 }
+if ($Width -le 0) {
+    $Width = if ($config.render_3d -and $config.render_3d.width_px) { [int]$config.render_3d.width_px } else { 1400 }
 }
-if ($Render3DHeight -le 0) {
-    $Render3DHeight = if ($config.render_3d -and $config.render_3d.height_px) { [int]$config.render_3d.height_px } else { 1000 }
+if ($Height -le 0) {
+    $Height = if ($config.render_3d -and $config.render_3d.height_px) { [int]$config.render_3d.height_px } else { 1000 }
 }
-$shouldRender3D = -not [bool]$Skip3D
 
 $templateDirs = New-Object System.Collections.Generic.List[string]
 if (-not [string]::IsNullOrWhiteSpace($TemplateDir)) {
@@ -120,7 +113,7 @@ function Resolve-TemplateFile {
     foreach ($dir in $templateDirs) {
         $fallback = Get-ChildItem -LiteralPath $dir -File -Filter "*$Extension" -ErrorAction SilentlyContinue | Sort-Object Name | Select-Object -First 1
         if ($fallback) {
-            Write-Warning "Preferred $Label template '$PreferredName' was not found; using '$($fallback.Name)'. Output details may differ from the challenge data."
+            Write-Warning "Preferred $Label template '$PreferredName' was not found; using '$($fallback.Name)'. STEP import details may differ from the challenge data."
             return $fallback.FullName
         }
     }
@@ -130,23 +123,14 @@ function Resolve-TemplateFile {
 
 $resolvedPart = Resolve-TemplateFile $PartTemplate $config.templates.preferred_part ".prtdot" "part"
 $resolvedAssembly = Resolve-TemplateFile $AssemblyTemplate $config.templates.preferred_assembly ".asmdot" "assembly"
-$resolvedDrawing = Resolve-TemplateFile $DrawingTemplate $config.templates.preferred_drawing_seed ".drwdot" "drawing seed"
-
-if ([string]::IsNullOrWhiteSpace($PdfToCairo)) {
-    $pdfCommand = Get-Command pdftocairo.exe -ErrorAction SilentlyContinue
-    $PdfToCairo = if ($pdfCommand) { $pdfCommand.Source } else { "pdftocairo.exe" }
-}
 
 $toolArgs = @(
     "--output-root", (Resolve-AbsolutePath $OutputRoot),
-    "--drawing-model-target-max-dimension", ([double]$config.normalization.drawing_model_target_max_dimension_m).ToString("R", $invariant),
-    "--normalized-step-target-max-dimension", ([double]$config.normalization.normalized_step_target_max_dimension_m).ToString("R", $invariant),
-    "--drawing-scale", ([double]$config.drawing.drawing_scale).ToString("R", $invariant),
-    "--max-processed", $MaxProcessed.ToString($invariant),
+    "--width", $Width.ToString([System.Globalization.CultureInfo]::InvariantCulture),
+    "--height", $Height.ToString([System.Globalization.CultureInfo]::InvariantCulture),
+    "--max-processed", $MaxProcessed.ToString([System.Globalization.CultureInfo]::InvariantCulture),
     "--part-template", $resolvedPart,
     "--assembly-template", $resolvedAssembly,
-    "--drawing-template", $resolvedDrawing,
-    "--pdftocairo", $PdfToCairo,
     "--close-when-done"
 )
 
@@ -157,6 +141,8 @@ if ($PSCmdlet.ParameterSetName -eq "Single") {
 }
 if ($Recursive) { $toolArgs += "--recursive" }
 if ($Visible) { $toolArgs += "--visible" }
+if ($KeepBmp) { $toolArgs += "--keep-bmp" }
+if ($SkipExisting) { $toolArgs += "--skip-existing" }
 if ($KeepSolidWorksOpen) {
     $toolArgs = @($toolArgs | Where-Object { $_ -ne "--close-when-done" })
 }
@@ -165,33 +151,19 @@ $resolved = [ordered]@{
     executable = Resolve-AbsolutePath $ToolExe
     input = if ($PSCmdlet.ParameterSetName -eq "Single") { Resolve-AbsolutePath $InputFile } else { Resolve-AbsolutePath $InputDir }
     output_root = Resolve-AbsolutePath $OutputRoot
-    drawing_model_target_max_dimension_m = [double]$config.normalization.drawing_model_target_max_dimension_m
-    normalized_step_target_max_dimension_m = [double]$config.normalization.normalized_step_target_max_dimension_m
-    drawing_scale = [double]$config.drawing.drawing_scale
-    projection = $config.drawing.projection
-    drawing_view_display_mode = $config.drawing.drawing_view_display_mode
-    tangent_edges = $config.drawing.tangent_edges
-    drawing_layer_name_policy = $config.drawing.layer_name_policy
-    techdraw_output_root = Join-Path (Resolve-AbsolutePath $OutputRoot) "techdraw"
-    techdraw_subdirectories = @("dxf", "pdf", "svg")
-    render_3d = [ordered]@{
-        enabled = $shouldRender3D
-        width_px = $Render3DWidth
-        height_px = $Render3DHeight
-        input_after_dataset_prep = Join-Path (Resolve-AbsolutePath $OutputRoot) "normalized_step"
-        output_root = Resolve-AbsolutePath $OutputRoot
-        image_output_root = Join-Path (Resolve-AbsolutePath $OutputRoot) "render_3D"
-        keep_raw_bmp = [bool]$Keep3DBmp
-        styles = @(
-            "transparent_shaded_edges_perspective",
-            "hlg_perspective",
-            "hlg_translucent_faces_perspective"
-        )
-    }
+    render_output_root = Join-Path (Resolve-AbsolutePath $OutputRoot) "render_3D"
+    width_px = $Width
+    height_px = $Height
+    view = "isometric"
+    perspective = $true
+    keep_raw_bmp = [bool]$KeepBmp
+    styles = @(
+        "transparent_shaded_edges_perspective",
+        "hlg_perspective",
+        "hlg_translucent_faces_perspective"
+    )
     part_template = $resolvedPart
     assembly_template = $resolvedAssembly
-    drawing_seed_template = $resolvedDrawing
-    pdftocairo = $PdfToCairo
 }
 
 $resolved | ConvertTo-Json -Depth 4 | Write-Host
@@ -203,37 +175,7 @@ if ($DryRun) {
 & $ToolExe @toolArgs
 $toolExitCode = $LASTEXITCODE
 if ($toolExitCode -ne 0) {
-    throw "Dataset preparation exited with code $toolExitCode. Inspect OutputRoot\logs and OutputRoot\manifests."
+    throw "3D renderer exited with code $toolExitCode. Inspect OutputRoot\logs and OutputRoot\manifests."
 }
 
-if ($shouldRender3D) {
-    $render3dScript = Join-Path $PSScriptRoot "render_3d.ps1"
-    if (-not (Test-Path -LiteralPath $render3dScript -PathType Leaf)) {
-        throw "3D render wrapper was not found: $render3dScript"
-    }
-
-    $render3dParams = @{
-        InputDir = Join-Path (Resolve-AbsolutePath $OutputRoot) "normalized_step"
-        OutputRoot = Resolve-AbsolutePath $OutputRoot
-        ConfigPath = Resolve-AbsolutePath $ConfigPath
-        PartTemplate = $resolvedPart
-        AssemblyTemplate = $resolvedAssembly
-        Width = $Render3DWidth
-        Height = $Render3DHeight
-        MaxProcessed = $MaxProcessed
-    }
-    if (-not [string]::IsNullOrWhiteSpace($Render3DToolExe)) {
-        $render3dParams.ToolExe = Resolve-AbsolutePath $Render3DToolExe
-    }
-    if ($Visible) { $render3dParams.Visible = $true }
-    if ($KeepSolidWorksOpen) { $render3dParams.KeepSolidWorksOpen = $true }
-    if ($Keep3DBmp) { $render3dParams.KeepBmp = $true }
-    if ($SkipExisting3D) { $render3dParams.SkipExisting = $true }
-
-    & $render3dScript @render3dParams
-    if ($LASTEXITCODE -ne 0) {
-        throw "3D transparent perspective rendering exited with code $LASTEXITCODE. Inspect OutputRoot\logs and OutputRoot\manifests."
-    }
-}
-
-Write-Host "Dataset preparation complete: $(Resolve-AbsolutePath $OutputRoot)"
+Write-Host "3D transparent perspective rendering complete: $(Resolve-AbsolutePath $OutputRoot)"

@@ -29,6 +29,7 @@
     "sheet_width_m": 0.297,
     "sheet_height_m": 0.21,
     "drawing_scale": 1.0,
+    "output_subdir": "techdraw",
     "drawing_view_display_mode": "HLV_hidden_lines_visible",
     "tangent_edges": "hidden",
     "layer_name_policy": "preserve_0_then_numeric_by_layer_id",
@@ -38,6 +39,26 @@
       "top": [0.083, 0.158],
       "right": [0.223, 0.057]
     }
+  },
+  "render_3d": {
+    "enabled_by_default": true,
+    "output_subdir": "render_3D",
+    "width_px": 1400,
+    "height_px": 1000,
+    "view": "isometric",
+    "perspective": true,
+    "background": "plain_white",
+    "axis_triad": "hidden",
+    "keep_raw_bmp": false,
+    "center_projected_foreground_on_canvas": true,
+    "postprocess_scaling": false,
+    "postprocess_cropping": false,
+    "styles": [
+      "transparent_shaded_edges_perspective",
+      "hlg_perspective",
+      "hlg_translucent_faces_perspective"
+    ],
+    "source_when_run_from_render_ps1": "output_root/normalized_step"
   },
   "templates": {
     "preferred_part": "gb_part.prtdot",
@@ -53,9 +74,10 @@
   "exports": [
     "normalized_step",
     "solidworks_drawing",
-    "pdf",
-    "dxf",
-    "svg",
-    "projection_map"
+    "techdraw/pdf",
+    "techdraw/dxf",
+    "techdraw/svg",
+    "projection_map",
+    "render_3D/transparent_perspective_png"
   ]
 }

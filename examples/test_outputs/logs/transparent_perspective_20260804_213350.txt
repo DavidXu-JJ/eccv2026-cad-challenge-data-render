@@ -1,0 +1,44 @@
+2026-08-04T21:33:54 SOLIDWORKS revision: 33.1.1
+2026-08-04T21:33:54 RenderSize=1400x1000 Perspective=true View=isometric
+2026-08-04T21:33:54 OutputRoot=D:\Solidworks_scripts_release\examples\test_outputs
+2026-08-04T21:33:55 Processing D:\Solidworks_scripts_release\examples\test_outputs\normalized_step\000000__normalized.step
+2026-08-04T21:33:56   OpenDoc6 part: errors=2097152 warnings=0 opened=False
+2026-08-04T21:33:57   OpenDoc6 assembly: errors=2097152 warnings=0 opened=False
+2026-08-04T21:33:57   OpenDoc6 part+r: errors=2097152 warnings=0 opened=False
+2026-08-04T21:33:57   OpenDoc6 part AP214: errors=2097152 warnings=0 opened=False
+2026-08-04T21:33:59   LoadFile4: errors=0 opened=True
+2026-08-04T21:34:02   projected foreground bounds=558,163,536,637 recenter_offset_px=-126,18
+2026-08-04T21:34:05   projected foreground bounds=557,162,538,638 recenter_offset_px=-126,19
+2026-08-04T21:34:07 Processing D:\Solidworks_scripts_release\examples\test_outputs\normalized_step\000001__normalized.step
+2026-08-04T21:34:07   OpenDoc6 part: errors=2097152 warnings=0 opened=False
+2026-08-04T21:34:07   OpenDoc6 assembly: errors=2097152 warnings=0 opened=False
+2026-08-04T21:34:07   OpenDoc6 part+r: errors=2097152 warnings=0 opened=False
+2026-08-04T21:34:07   OpenDoc6 part AP214: errors=2097152 warnings=0 opened=False
+2026-08-04T21:34:08   LoadFile4: errors=0 opened=True
+2026-08-04T21:34:11   projected foreground bounds=588,135,521,682 recenter_offset_px=-148,24
+2026-08-04T21:34:14   projected foreground bounds=587,135,523,682 recenter_offset_px=-148,24
+2026-08-04T21:34:16 Processing D:\Solidworks_scripts_release\examples\test_outputs\normalized_step\000002__normalized.step
+2026-08-04T21:34:16   OpenDoc6 part: errors=2097152 warnings=0 opened=False
+2026-08-04T21:34:16   OpenDoc6 assembly: errors=2097152 warnings=0 opened=False
+2026-08-04T21:34:16   OpenDoc6 part+r: errors=2097152 warnings=0 opened=False
+2026-08-04T21:34:16   OpenDoc6 part AP214: errors=2097152 warnings=0 opened=False
+2026-08-04T21:34:28   LoadFile4: errors=0 opened=True
+2026-08-04T21:34:32   projected foreground bounds=484,177,581,573 recenter_offset_px=-74,36
+2026-08-04T21:34:35   projected foreground bounds=483,176,582,575 recenter_offset_px=-74,36
+2026-08-04T21:34:36 Processing D:\Solidworks_scripts_release\examples\test_outputs\normalized_step\000003__normalized.step
+2026-08-04T21:34:37   OpenDoc6 part: errors=2097152 warnings=0 opened=False
+2026-08-04T21:34:37   OpenDoc6 assembly: errors=2097152 warnings=0 opened=False
+2026-08-04T21:34:37   OpenDoc6 part+r: errors=2097152 warnings=0 opened=False
+2026-08-04T21:34:37   OpenDoc6 part AP214: errors=2097152 warnings=0 opened=False
+2026-08-04T21:34:38   LoadFile4: errors=0 opened=True
+2026-08-04T21:34:41   projected foreground bounds=634,387,355,247 recenter_offset_px=-112,-10
+2026-08-04T21:34:44   projected foreground bounds=633,386,357,249 recenter_offset_px=-112,-10
+2026-08-04T21:34:46 Processing D:\Solidworks_scripts_release\examples\test_outputs\normalized_step\000004__normalized.step
+2026-08-04T21:34:46   OpenDoc6 part: errors=2097152 warnings=0 opened=False
+2026-08-04T21:34:46   OpenDoc6 assembly: errors=2097152 warnings=0 opened=False
+2026-08-04T21:34:46   OpenDoc6 part+r: errors=2097152 warnings=0 opened=False
+2026-08-04T21:34:46   OpenDoc6 part AP214: errors=2097152 warnings=0 opened=False
+2026-08-04T21:34:48   LoadFile4: errors=0 opened=True
+2026-08-04T21:34:51   projected foreground bounds=590,139,517,724 recenter_offset_px=-148,-1
+2026-08-04T21:34:53   projected foreground bounds=590,138,517,726 recenter_offset_px=-148,-1
+2026-08-04T21:34:55 Done. OK=5 SkippedExisting=0 Failed=0 Processed=5 Results=D:\Solidworks_scripts_release\examples\test_outputs\manifests\transparent_perspective_results_20260804_213455.csv

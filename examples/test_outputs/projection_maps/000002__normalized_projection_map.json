@@ -1,0 +1,19 @@
+{
+  "generator": "SolidWorksDatasetPrep",
+  "projection": "third_angle",
+  "drawing_display_mode": 1,
+  "drawing_view_display_mode_name": "HLV_hidden_lines_visible",
+  "tangent_edges": "hidden",
+  "drawing_layer_name_policy": "preserve_0_then_numeric_by_layer_id",
+  "sheet": {"size":"A4","orientation":"landscape","width_m":0.297,"height_m":0.210},
+  "requested_drawing_scale": 1,
+  "drawing_model_source": "temporary_solidworks_part",
+  "drawing_pdf": "D:\\Solidworks_scripts_release\\examples\\test_outputs\\techdraw\\pdf\\000002__normalized.pdf",
+  "units": "meters",
+  "normalization": {"preserve_axes":true,"center_to_origin":true,"drawing_model_target_max_dimension_m":0.1,"normalized_step_target_max_dimension_m":0.0018},
+  "views": [
+    {"view_index":0,"third_angle_role":"front","display_mode":1,"position_m":[0.083,0.057],"outline_m":[0.028800010714273374,0.020520473070549838,0.13720000000000007,0.093479526929449538],"scale_decimal":1,"model_to_view_transform":[1,0,0,0,1,0,0,0,1,0.083,0.057,0,1,0,0,0]},
+    {"view_index":1,"third_angle_role":"top","display_mode":1,"position_m":[0.083,0.158],"outline_m":[0.028800010714273374,0.13951249795977094,0.13720000000000007,0.17648751275450203],"scale_decimal":1,"model_to_view_transform":[1,0,0,0,-3.4914813388431334E-15,1,0,-1,-3.4914813388431334E-15,0.083,0.158,0,1,0,0,0]},
+    {"view_index":2,"third_angle_role":"right","display_mode":1,"position_m":[0.223,0.057],"outline_m":[0.20451249795977089,0.020520473070549838,0.24148751275450209,0.093479526929449538],"scale_decimal":1,"model_to_view_transform":[-3.4914813388431334E-15,0,1,0,1,0,-1,0,-3.4914813388431334E-15,0.223,0.057,0,1,0,0,0]}
+  ]
+}
