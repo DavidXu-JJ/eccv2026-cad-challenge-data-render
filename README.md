@@ -1,4 +1,4 @@
-# SOLIDWORKS STEP-to-Drawing Dataset Preparation
+# ECCV 2026 CAD Workshop Challenge Dataset Preparation
 
 This repository contains the dataset preparation code used for the ECCV CAD
 Workshop Challenge. It imports STEP files with SOLIDWORKS and exports:
