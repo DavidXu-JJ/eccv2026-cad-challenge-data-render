@@ -33,7 +33,7 @@ If you find this dataset or challenge useful, please consider citing the associa
   title = {{The Path to Manufacturing: Evolving 3D Generation to Intelligent Computer-Aided Design}},
   author = {{ECCV 2026 Workshop Organizers}},
   year = {2026},
-  howpublished = {ECCV 2026 Workshop Website},
+  howpublished = {ECCV 2026 Workshop and CAD Challenge Website},
   url = {https://3dgen-cad-workshop.github.io/},
   note = {Official workshop website and CAD Challenge}
 }
