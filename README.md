@@ -31,15 +31,13 @@ If you find this dataset or challenge useful, please consider citing the associa
 ```bibtex
 @misc{eccv2026pathtomanufacturing,
   title = {{The Path to Manufacturing: Evolving 3D Generation to Intelligent Computer-Aided Design}},
-  author = {Yi Ma and Kyoung Mu Lee and Jianfei Cai and Ligang Liu and Shenghua Gao and Qixing Huang and Young Min Kim and Xiang Xu and Yang You and Yilin Liu and Dacheng Qi and Jingwei Xu and Chenyu Wang},
+  author = {{ECCV 2026 Workshop Organizers}},
   year = {2026},
-  howpublished = {ECCV 2026 Workshop},
+  howpublished = {ECCV 2026 Workshop Website},
   url = {https://3dgen-cad-workshop.github.io/},
-  note = {Workshop and CAD Challenge at ECCV 2026}
+  note = {Official workshop website and CAD Challenge}
 }
 ```
-
-*The names in the citation correspond to the workshop organizers and follow the order listed on the official workshop website.*
 
 ## Tested Environment
 
